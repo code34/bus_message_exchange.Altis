@@ -21,11 +21,10 @@
 		BME_netcode_server_nameofyourvariable = { code to execute on server side };
 	*/
 	
-
-	// Clients send ack - in ready state to exchange
-	BME_netcode_server_bme_newclient = {
-		bme_newclient = _this select 0;
-		bme_clients = bme_clients + [bme_newclient];
+	// Example function write log on server side
+	BME_netcode_server_bme_log = {
+		bme_log = _this select 0;
+		diag_log format["BME: %1", bme_log];
 	};
 
 

@@ -25,31 +25,20 @@
 	BME_fnc_publishmission	= compilefinal preprocessFile "BME\BME_publishmission.sqf";
 
 	if(isserver) then {
-		bme_clients = [];
 		bme_queue = [];
 		_garbage = [] spawn BME_fnc_queue;
 		_garbage = [] call BME_fnc_eventhandler;
 		_garbage = [] call BME_fnc_serverhandler;
 	};
 	
-	if(local player) then {
+	if((local player) and !(isserver)) then {
 		bme_queue = [];
-		_garbage = [] spawn BME_fnc_queue;
 		_garbage = [] call BME_fnc_eventhandler;
-		_garbage = [] call BME_fnc_clienthandler;
-
-		bme_newclient = name player;
-		["bme_newclient", "server"] call BME_fnc_publicvariable;
+		_garbage = [] spawn BME_fnc_queue;
 	};
 
-
-	if(isserver) then {
-		//bme_message = "hello what s up!";
-		//["bme_message", "client"] call BME_fnc_publicvariable;
-		while { true } do {
-			hint format["%1", bme_clients];
-			sleep 1;
-		};
+	if(local player) then {
+		_garbage = [] call BME_fnc_clienthandler;
 	};
 
 

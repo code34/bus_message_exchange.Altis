@@ -21,9 +21,10 @@
 		BME_netcode_nameofyourvariable = { code to execute on client side };
 	*/
 
+	// Example function hint message on client side
 	BME_netcode_bme_message = {
 		bme_message = _this select 0;
-		hintc bme_message;
+		hint bme_message;
 	};
 
 	// return true when read

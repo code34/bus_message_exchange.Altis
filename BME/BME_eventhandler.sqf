@@ -21,17 +21,12 @@
 	BME_fnc_publicvariable = {
 		private ["_variablename", "_variablevalue", "_type", "_playerid"];
 
-		_variablename = _this select 0;
-		_variablevalue =  call compile format["%1", _variablename];
-		_type = _this select 1;
-		_playerid = _this select 2;
+		_variablename 	= _this select 0;
+		_variablevalue 	=  call compile format["%1", _variablename];
+		_type		= _this select 1;
+		_playerid 	= _this select 2;
 
 		bme_addqueue = [_variablename, _variablevalue, _type];
-
-		// fix by A2 AO
-		//if(isserver and local player) then {
-		//	bme_queue = bme_queue + [bme_addqueue];
-		//};
 
 		switch (_type) do {
 			case "server": {
@@ -42,11 +37,17 @@
 				if(!isnil "_playerid") then {
 					_playerid publicvariableclient "bme_addqueue";
 				} else {
+					if((local player) and (isserver)) then {
+						(owner player) publicvariableclient "bme_addqueue";
+					};
 					publicvariable "bme_addqueue";
 				};
 			};
 
 			default {
+				if((local player) and (isserver)) then {
+					(owner player) publicvariableclient "bme_addqueue";
+				};
 				publicvariable "bme_addqueue";
 			};
 		};
@@ -54,16 +55,12 @@
 
 	"bme_addqueue" addPublicVariableEventHandler {
 		// insert message in the queue if its for server or everybody
-		if(isserver) then {
-			if( ((bme_addqueue select 2) == "server") or ((bme_addqueue select 2) == "all") ) then {
-				bme_queue = bme_queue + [bme_addqueue];
-			};
+		if((isserver) and (((bme_addqueue select 2) == "server") or ((bme_addqueue select 2) == "all"))) then {
+			bme_queue = bme_queue + [bme_addqueue];
 		};
 
 		// insert message in the queue if its for client or everybody
-		if(local player) then {
-			if( ((bme_addqueue select 2) == "client") or ((bme_addqueue select 2) == "all") ) then {
+		if((local player) and (((bme_addqueue select 2) == "client") or ((bme_addqueue select 2) == "all"))) then {
 				bme_queue = bme_queue + [bme_addqueue];
-			};
 		};
 	};
