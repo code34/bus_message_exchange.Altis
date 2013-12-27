@@ -31,4 +31,4 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
-		0.1 - Exchange BUS message original from A2 - Warcontext
+		0.1 - BUS message Exchange original from A2 - Warcontext
