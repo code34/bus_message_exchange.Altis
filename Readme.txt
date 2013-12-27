@@ -18,10 +18,10 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	Create dynamic civilian life in towns
+	Create a main bus message between clients & server
 	
 	Usage:
-		put the directory EBM in your mission directory
+		put the directory BEM in your mission directory
 		put this code into your mission init.sqf
 		[] execVM "BME\init.sqf";
 
