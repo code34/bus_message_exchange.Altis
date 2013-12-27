@@ -39,5 +39,3 @@
 	if(local player) then {
 		_garbage = [] call BME_fnc_clienthandler;
 	};
-
-

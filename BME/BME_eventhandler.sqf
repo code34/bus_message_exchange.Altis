@@ -26,9 +26,14 @@
 		_type		= _this select 1;
 		_playerid 	= _this select 2;
 
+		if(isnil "_type") exitwith {hint "BME: missing destination parameter"};
+		if!(typename _variablename == "STRING") exitwith {hint "BME: wrong type variablename parameter, should be STRING"};
+		if!(typename _type == "STRING") exitwith {hint "BME: wrong type destination parameter, should be STRING"};
+		if!(tolower(_type) in ["client", "server", "all"]) exitwith {hint "BME: wrong destination parameter should be client|server|all"};
+
 		bme_addqueue = [_variablename, _variablevalue, _type];
 
-		switch (_type) do {
+		switch (tolower(_type)) do {
 			case "server": {
 				publicvariableserver "bme_addqueue";
 			};

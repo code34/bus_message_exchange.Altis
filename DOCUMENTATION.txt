@@ -1,0 +1,40 @@
+V 0.1 : BME by code34 - nicolas_boiteux@yahoo.fr
+
+Messages are variables that contains value, and are send to destination host.
+
+How to send message:
+--------------------
+Usage:
+[message, destination] call BME_fnc_publicvariable;
+
+Send a message to all client
+["variablename", "client"] call BME_fnc_publicvariable;
+	
+Send a message to a specific client
+["variablename", "client", clientid] call BME_fnc_publicvariable;
+
+Send a message to server
+["variablename", "server"] call BME_fnc_publicvariable;
+	
+Send a message to everybody
+["variablename"] call BME_fnc_publicvariable;
+
+How to receive message:
+-----------------------
+The message are handle by listeners on client or server side. Listeners are specific functions that are executed on destination host, when message is distributed.
+Message is distributed as a parameter of the function like eventhandler do.
+
+There is tow kind of listeners:
+- server listeners 
+- client listerners 
+
+The listener declaration must respect this syntax:
+BME_netcode_server_nameofyourvariable = { code to execute on server side };
+BME_netcode_nameofyourvariable = { code to execute on client side };
+
+You can declare thoses listeners directly on your code, but it's more simple to use the default location:
+client side:
+- declare by default in BME_clienthandler.sqf
+
+server side:
+- declare by default in BME_serverhandler.sqf
