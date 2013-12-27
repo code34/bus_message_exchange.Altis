@@ -15,7 +15,7 @@ class Mission
 	randomSeed=1855801;
 	class Intel
 	{
-		briefingName="EBM (exchange bus message) test mission";
+		briefingName="BME (bus message exchange) test mission";
 		startWeather=0;
 		startWind=0.099999994;
 		startWaves=0.099999994;
