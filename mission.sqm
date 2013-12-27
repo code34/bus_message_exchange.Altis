@@ -9,13 +9,13 @@ class Mission
 	};
 	addOnsAuto[]=
 	{
-		"A3_Soft_F_Quadbike",
+		"A3_Characters_F_BLUFOR",
 		"a3_map_altis"
 	};
 	randomSeed=1855801;
 	class Intel
 	{
-		briefingName="EBM (exchange bus message) test mission";
+		briefingName="BME (bus message exchange) test mission";
 		startWeather=0;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -39,18 +39,26 @@ class Mission
 		items=1;
 		class Item0
 		{
-			side="EAST";
+			side="WEST";
 			class Vehicles
 			{
-				items=1;
+				items=2;
 				class Item0
 				{
-					position[]={16300.382,25.316954,17300.771};
+					position[]={16297.967,25.316694,17300.965};
 					id=0;
-					side="EAST";
-					vehicle="O_Quadbike_01_F";
+					side="WEST";
+					vehicle="B_Soldier_F";
 					player="PLAYER COMMANDER";
 					leader=1;
+					skill=0.60000002;
+				};
+				class Item1
+				{
+					position[]={16303.1,25.317245,17300.793};
+					id=1;
+					side="WEST";
+					vehicle="B_Soldier_F";
 					skill=0.60000002;
 				};
 			};

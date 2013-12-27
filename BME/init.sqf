@@ -42,9 +42,14 @@
 		["bme_newclient", "server"] call BME_fnc_publicvariable;
 	};
 
-	while { true } do {
-		hint format["%1", bme_clients];
-		sleep 1;
+
+	if(isserver) then {
+		//bme_message = "hello what s up!";
+		//["bme_message", "client"] call BME_fnc_publicvariable;
+		while { true } do {
+			hint format["%1", bme_clients];
+			sleep 1;
+		};
 	};
 
 

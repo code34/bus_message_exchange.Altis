@@ -5,5 +5,5 @@ class Header {
 	gameType = COOP;
 };
 name = "DCL";
-overviewText = "Dynamic Civilian Life";
-overviewTextLocked = "Dynamic Civilian Life sample in a test mission.";
+overviewText = "BUS MESSAGE EXCHANGE";
+overviewTextLocked = "BUS MESSAGE EXCHANGE sample in a test mission.";
