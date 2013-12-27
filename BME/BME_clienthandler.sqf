@@ -23,5 +23,8 @@
 
 	BME_netcode_bme_message = {
 		bme_message = _this select 0;
-		hintsilent bme_message;
+		hint bme_message;
 	};
+
+	// return true when read
+	true;

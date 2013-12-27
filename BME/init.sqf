@@ -18,23 +18,33 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	BME_eventhandler	= compilefinal preprocessFile "BME\BME_eventhandler.sqf";
-	BME_serverhandler	= compilefinal preprocessFile "BME\BME_serverhandler.sqf";
-	BME_clienthandler	= compilefinal preprocessFile "BME\BME_clienthandler.sqf";
-	BME_publishmission	= compilefinal preprocessFile "BME\BME_publishmission.sqf";
+	BME_fnc_queue		= compilefinal preprocessFile "BME\BME_queue.sqf";
+	BME_fnc_eventhandler	= compilefinal preprocessFile "BME\BME_eventhandler.sqf";
+	BME_fnc_serverhandler	= compilefinal preprocessFile "BME\BME_serverhandler.sqf";
+	BME_fnc_clienthandler	= compilefinal preprocessFile "BME\BME_clienthandler.sqf";
+	BME_fnc_publishmission	= compilefinal preprocessFile "BME\BME_publishmission.sqf";
 
 	if(isserver) then {
 		bme_clients = [];
-		_garbage = [] spawn WC_fnc_eventhandler;
-		_garbage = [] spawn WC_fnc_serverhandler;
+		bme_queue = [];
+		_garbage = [] spawn BME_fnc_queue;
+		_garbage = [] call BME_fnc_eventhandler;
+		_garbage = [] call BME_fnc_serverhandler;
 	};
 	
 	if(local player) then {
-		_garbage = [] spawn WC_fnc_eventhandler;
-		_garbage = [] spawn WC_fnc_clienthandler;
+		bme_queue = [];
+		_garbage = [] spawn BME_fnc_queue;
+		_garbage = [] call BME_fnc_eventhandler;
+		_garbage = [] call BME_fnc_clienthandler;
 
 		bme_newclient = name player;
-		["bme_newclient", "server"] call BME_publicvariable;
+		["bme_newclient", "server"] call BME_fnc_publicvariable;
+	};
+
+	while { true } do {
+		hint format["%1", bme_clients];
+		sleep 1;
 	};
 
 

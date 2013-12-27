@@ -16,18 +16,23 @@
 	
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-
-	Usage: 
-		BME_netcode_server_nameofyourvariable = { code to execute on server side };
 	*/
-	
 
-	// Clients send ack - in ready state to exchange
-	BME_netcode_server_bme_newclient = {
-		bme_newclient = _this select 0;
-		bme_clients = bme_clients + [bme_newclient];
+	private ["_variable", "_variablename", "_type"];
+
+	while { true } do {
+		waituntil {(count bme_queue) > 0};
+		_variablename = (bme_queue select 0) select 0;
+		_variable = (bme_queue select 0) select 1;
+		_type = (bme_queue select 0) select 2;
+		if((_type == "server") or (_type == "all")) then {
+			call compile format["wcgarbage = [_variable] spawn BME_netcode_server_%1;", _variablename];
+		};
+		if((_type == "client") or (_type == "all")) then {
+			call compile format["wcgarbage = [_variable] spawn BME_netcode_%1;", _variablename];
+		};
+		bme_queue set [0,-1]; 
+		bme_queue = bme_queue - [-1];
+		sleep 0.1;
 	};
 
-
-	// return true when read
-	true;

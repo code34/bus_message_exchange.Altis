@@ -18,14 +18,14 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	CREATE A BUS MESSAGE EXCHANGE BETWEEN CLIENTS & SERVER
+	Create dynamic civilian life in towns
 	
 	Usage:
 		put the directory EBM in your mission directory
 		put this code into your mission init.sqf
-		[] exec "BME\init.sqf";
+		[] execVM "BME\init.sqf";
 
-	See example mission in directory: exchange_bus_message.Altis
+	See example mission in directory: bus_exchange_message.Altis
 	
 	Licence: 
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
