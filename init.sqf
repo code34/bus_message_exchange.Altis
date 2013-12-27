@@ -1,1 +1,1 @@
-	[] execVM "BME\init.sqf";
+	[] exec "BME\init.sqf";

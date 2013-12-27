@@ -23,7 +23,7 @@
 	Usage:
 		put the directory EBM in your mission directory
 		put this code into your mission init.sqf
-		[] execVM "BME\init.sqf";
+		[] exec "BME\init.sqf";
 
 	See example mission in directory: exchange_bus_message.Altis
 	
