@@ -1,0 +1,1 @@
+	[] execVM "BME\init.sqf";
