@@ -17,7 +17,7 @@ Send a message to server
 ["variablename", "server"] call BME_fnc_publicvariable;
 	
 Send a message to everybody
-["variablename"] call BME_fnc_publicvariable;
+["variablename", "all"] call BME_fnc_publicvariable;
 
 How to receive message:
 -----------------------
