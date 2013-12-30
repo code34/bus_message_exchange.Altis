@@ -18,8 +18,11 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
+	private ["_garbage"];
+
 	BME_fnc_queue		= compilefinal preprocessFile "BME\BME_queue.sqf";
 	BME_fnc_eventhandler	= compilefinal preprocessFile "BME\BME_eventhandler.sqf";
+	BME_fnc_log		= compilefinal preprocessFile "BME\BME_log.sqf";
 	BME_fnc_serverhandler	= compilefinal preprocessFile "BME\BME_serverhandler.sqf";
 	BME_fnc_clienthandler	= compilefinal preprocessFile "BME\BME_clienthandler.sqf";
 
