@@ -32,6 +32,7 @@
 
 	logs:
 		0.2 - Fix:
+			- add performance improvement of @Prodavec
 			- add private variable declaration
 			- fix iteration call
 			- add logs 
