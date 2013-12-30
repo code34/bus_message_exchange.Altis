@@ -23,7 +23,7 @@
 	Usage:
 		put the directory BEM in your mission directory
 		put this code into your mission init.sqf
-		[] execVM "BME\init.sqf";
+		call compilefinal preprocessFileLineNumbers "BME\init.sqf";
 
 	See example mission in directory: bus_exchange_message.Altis
 	
@@ -31,4 +31,9 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
+		0.2 - Fix:
+			- add private variable declaration
+			- fix iteration call
+			- add logs 
+			- change calling line
 		0.1 - BUS message Exchange original from A2 - Warcontext
