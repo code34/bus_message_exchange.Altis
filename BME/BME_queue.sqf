@@ -18,22 +18,29 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	private ["_message", "_variable", "_variablename", "_type"];
+	private ["_code", "_garbage", "_message", "_variable", "_variablename", "_destination"];
 
 	while { true } do {
 		waituntil {(count bme_queue) > 0};
 		_message = bme_queue select 0;
 		_variablename = _message select 0;
 		_variable = _message select 1;
-		_type = _message select 2;
-		if((_type == "server") or (_type == "all")) then {
-			call compile format["_garbage = [_variable] spawn BME_netcode_server_%1;", _variablename];
+		_destination = _message select 2;
+
+		if(isserver and ((_destination == "server") or (_destination == "all"))) then {
+			_code = (missionNamespace getVariable (format ["BME_netcode_server_%1", _variablename]));
 		};
-		if((_type == "client") or (_type == "all")) then {
-			call compile format["_garbage = [_variable] spawn BME_netcode_%1;", _variablename];
+		if(local player and ((_destination == "client") or (_destination == "all"))) then {
+			_code = (missionNamespace getVariable (format ["BME_netcode_%1", _variablename]));
 		};
-		bme_queue set [0,-1]; 
-		bme_queue = bme_queue - [-1];
+		if!(isnil "_code") then {
+			_garbage = [_variable] spawn _code;
+		} else {
+			format["BME: handler for %1 doesnt exist", _variablename] call BME_fnc_log;
+		};
+
+		bme_queue set [0, objnull]; 
+		bme_queue = bme_queue - [objnull];
 		sleep 0.1;
 	};
 
