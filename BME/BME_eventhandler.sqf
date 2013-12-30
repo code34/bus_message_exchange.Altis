@@ -68,11 +68,11 @@
 
 		// insert message in the queue if its for server or everybody
 		if((isserver) and ((_destination == "server") or (_destination == "all"))) then {
-			bme_queue = bme_queue + [_bme_addqueue];
+			bme_queue set [count bme_queue, bme_addqueue];
 		};
 
 		// insert message in the queue if its for client or everybody
 		if((local player) and ((_destination == "client") or (_destination == "all"))) then {
-			bme_queue = bme_queue + [_bme_addqueue];
+			bme_queue set [count bme_queue, bme_addqueue];
 		};
 	};
