@@ -1,1 +1,1 @@
-	[] execVM "BME\init.sqf";
+	call compilefinal preprocessFileLineNumbers "BME\init.sqf";
