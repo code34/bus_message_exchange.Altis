@@ -19,21 +19,23 @@
 	*/
 
 	BME_fnc_publicvariable = {
-		private ["_variablename", "_variablevalue", "_type", "_playerid"];
+		private ["_variablename", "_variablevalue", "_destination", "_playerid"];
 
 		_variablename 	= _this select 0;
-		_variablevalue 	=  call compile format["%1", _variablename];
-		_type		= _this select 1;
+		_variablevalue 	= missionNamespace getVariable _variablename;
+		_destination	= tolower(_this select 1);
 		_playerid 	= _this select 2;
 
-		if(isnil "_type") exitwith {hint "BME: missing destination parameter"};
-		if!(typename _variablename == "STRING") exitwith {hint "BME: wrong type variablename parameter, should be STRING"};
-		if!(typename _type == "STRING") exitwith {hint "BME: wrong type destination parameter, should be STRING"};
-		if!(tolower(_type) in ["client", "server", "all"]) exitwith {hint "BME: wrong destination parameter should be client|server|all"};
+		if(isnil "_destination") exitwith {"BME: missing destination parameter" call BME_fnc_log;};
+		if(isnil "_variablevalue") exitwith {format["BME: variable %1 is nil", _variablename] call BME_fnc_log;};
+		if!(typename _variablename == "STRING") exitwith {"BME: wrong type variablename parameter, should be STRING" call BME_fnc_log;};
+		if!(typename _destination == "STRING") exitwith {"BME: wrong type destination parameter, should be STRING" call BME_fnc_log;};
+		if!(_destination in ["client", "server", "all"]) exitwith {"BME: wrong destination parameter should be client|server|all" call BME_fnc_log;};
 
-		bme_addqueue = [_variablename, _variablevalue, _type];
 
-		switch (tolower(_type)) do {
+		bme_addqueue = [_variablename, _variablevalue, _destination];
+
+		switch (_destination) do {
 			case "server": {
 				publicvariableserver "bme_addqueue";
 			};
@@ -59,13 +61,18 @@
 	};
 
 	"bme_addqueue" addPublicVariableEventHandler {
+		private ["_destination", "_bme_addqueue"];
+
+		_bme_addqueue = _this select 1;
+		_destination = _bme_addqueue select 2;
+
 		// insert message in the queue if its for server or everybody
-		if((isserver) and (((bme_addqueue select 2) == "server") or ((bme_addqueue select 2) == "all"))) then {
-			bme_queue = bme_queue + [bme_addqueue];
+		if((isserver) and ((_destination == "server") or (_destination == "all"))) then {
+			bme_queue = bme_queue + [_bme_addqueue];
 		};
 
 		// insert message in the queue if its for client or everybody
-		if((local player) and (((bme_addqueue select 2) == "client") or ((bme_addqueue select 2) == "all"))) then {
-				bme_queue = bme_queue + [bme_addqueue];
+		if((local player) and ((_destination == "client") or (_destination == "all"))) then {
+			bme_queue = bme_queue + [_bme_addqueue];
 		};
 	};
