@@ -21,7 +21,7 @@
 	private ["_code", "_garbage", "_message", "_variable", "_variablename", "_destination"];
 
 	while { true } do {
-		waituntil {(count bme_queue) > 0};
+		while { count bme_queue == 0 } do { sleep 0.1; };
 		_message = bme_queue select 0;
 		_variablename = _message select 0;
 		_variable = _message select 1;
@@ -36,7 +36,7 @@
 		if!(isnil "_code") then {
 			_garbage = [_variable] spawn _code;
 		} else {
-			format["BME: handler for %1 doesnt exist", _variablename] call BME_fnc_log;
+			format["BME: handler function for %1 doesnt exist", _variablename] call BME_fnc_log;
 		};
 
 		bme_queue set [0, objnull]; 
