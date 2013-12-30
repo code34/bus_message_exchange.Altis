@@ -20,12 +20,14 @@
 	Usage: 
 		BME_netcode_server_nameofyourvariable = { code to execute on server side };
 	*/
-	
+
 	// Example function write log on server side
 	BME_netcode_server_bme_log = {
 		bme_log = _this select 0;
 		diag_log format["BME: %1", bme_log];
 	};
+
+
 
 
 	// return true when read
