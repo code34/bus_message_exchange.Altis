@@ -18,7 +18,7 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	private ["_code", "_garbage", "_message", "_variable", "_variablename", "_destination"];
+	private ["_code", "_destination", "_garbage", "_message", "_variable", "_variablename"];
 
 	while { true } do {
 		while { count bme_queue == 0 } do { sleep 0.1; };
