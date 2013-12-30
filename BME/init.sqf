@@ -28,9 +28,9 @@
 
 	if(isserver) then {
 		bme_queue = [];
-		_garbage = [] spawn BME_fnc_queue;
 		_garbage = [] call BME_fnc_eventhandler;
 		_garbage = [] call BME_fnc_serverhandler;
+		_garbage = [] spawn BME_fnc_queue;
 	};
 	
 	if((local player) and !(isserver)) then {
