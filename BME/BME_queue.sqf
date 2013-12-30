@@ -18,18 +18,19 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 	*/
 
-	private ["_variable", "_variablename", "_type"];
+	private ["_message", "_variable", "_variablename", "_type"];
 
 	while { true } do {
 		waituntil {(count bme_queue) > 0};
-		_variablename = (bme_queue select 0) select 0;
-		_variable = (bme_queue select 0) select 1;
-		_type = (bme_queue select 0) select 2;
+		_message = bme_queue select 0;
+		_variablename = _message select 0;
+		_variable = _message select 1;
+		_type = _message select 2;
 		if((_type == "server") or (_type == "all")) then {
-			call compile format["wcgarbage = [_variable] spawn BME_netcode_server_%1;", _variablename];
+			call compile format["_garbage = [_variable] spawn BME_netcode_server_%1;", _variablename];
 		};
 		if((_type == "client") or (_type == "all")) then {
-			call compile format["wcgarbage = [_variable] spawn BME_netcode_%1;", _variablename];
+			call compile format["_garbage = [_variable] spawn BME_netcode_%1;", _variablename];
 		};
 		bme_queue set [0,-1]; 
 		bme_queue = bme_queue - [-1];
