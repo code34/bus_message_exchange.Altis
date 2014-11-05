@@ -24,6 +24,7 @@
 	// Example function write log on server side
 	BME_netcode_server_bme_log = {
 		bme_log = _this select 0;
+		hint format["BME: %1", bme_log];
 		diag_log format["BME: %1", bme_log];
 	};
 
