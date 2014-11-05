@@ -1,7 +1,7 @@
 Author = "Code34";
 class Header {
-	maxPlayers = 1;
 	minPlayers = 1;
+	maxPlayers = 2;
 	gameType = COOP;
 };
 name = "DCL";
