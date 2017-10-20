@@ -1,6 +1,6 @@
 	/*
 	Author: code34 nicolas_boiteux@yahoo.fr
-	Copyright (C) 2013 Nicolas BOITEUX
+	Copyright (C) 2013-2018 Nicolas BOITEUX
 
 	Bus Message Exchange (BME)
 	
@@ -27,9 +27,6 @@
 		hint format["BME: %1", bme_log];
 		diag_log format["BME: %1", bme_log];
 	};
-
-
-
 
 	// return true when read
 	true;
