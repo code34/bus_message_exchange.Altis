@@ -22,6 +22,7 @@
 
 	while { true } do {
 		while { count bme_queue == 0 } do { sleep 0.1; };
+
 		_message = bme_queue select 0;
 		_variablename = _message select 0;
 		_variable = _message select 1;
@@ -40,8 +41,7 @@
 			format["BME: handler function for %1 doesnt exist", _variablename] call BME_fnc_log;
 		};
 
-		bme_queue set [0, objnull]; 
-		bme_queue = bme_queue - [objnull];
+		bme_queue deleteat 0;
 		sleep 0.1;
 	};
 
