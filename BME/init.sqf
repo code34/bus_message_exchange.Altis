@@ -20,13 +20,13 @@
 
 	private ["_garbage"];
 
-	BME_fnc_queue		= compilefinal preprocessFile "client\BME\BME_queue.sqf";
-	BME_fnc_eventhandler		= compilefinal preprocessFile "client\BME\BME_eventhandler.sqf";
-	BME_fnc_log			= compilefinal preprocessFile "client\BME\BME_log.sqf";
-	BME_fnc_clienthandler		= compilefinal preprocessFile "client\BME\BME_clienthandler.sqf";
+	BME_fnc_queue		= compilefinal preprocessFile "BME\BME_queue.sqf";
+	BME_fnc_eventhandler		= compilefinal preprocessFile "BME\BME_eventhandler.sqf";
+	BME_fnc_log			= compilefinal preprocessFile "BME\BME_log.sqf";
+	BME_fnc_clienthandler		= compilefinal preprocessFile "BME\BME_clienthandler.sqf";
 
 	if(isserver) then {
-		BME_fnc_serverhandler = compilefinal preprocessFile "warcontext\BME\BME_serverhandler.sqf";
+		BME_fnc_serverhandler = compilefinal preprocessFile "BME\BME_serverhandler.sqf";
 
 		bme_queue = [];
 		_garbage = [] call BME_fnc_eventhandler;

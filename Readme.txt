@@ -31,6 +31,7 @@
 	You can share, modify, distribute this script but don't remove the licence and the name of the original author
 
 	logs:
+		1.0 - Final release from combat assault
 		0.3 - Fix:
 			- fix mp handler call
 			- fix reset code
